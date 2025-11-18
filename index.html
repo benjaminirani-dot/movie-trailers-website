@@ -3,29 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Viewer</title>
-
+    <title>YesMoviesHub Viewer</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #fff;
             margin: 0;
             padding: 0;
         }
         header {
-            background-color: #333;
-            color: white;
-            padding: 10px;
+            background-color: #000;
+            padding: 20px;
             text-align: center;
+            border-bottom: 3px solid #ff6b35;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         .search-bar {
             margin: 20px auto;
-            width: 50%;
+            width: 60%;
+            max-width: 500px;
         }
         .search-bar input {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             font-size: 16px;
+            border: none;
+            border-radius: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            background-color: #333;
+            color: #fff;
+        }
+        .search-bar input::placeholder {
+            color: #aaa;
         }
         .site-grid {
             display: grid;
@@ -34,26 +48,45 @@
             padding: 20px;
         }
         .site-card {
-            background-color: white;
-            border-radius: 8px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .site-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(255,107,53,0.4);
         }
         .site-card img {
             width: 100%;
-            height: auto;
+            height: 300px;
+            object-fit: cover;
+            background: linear-gradient(45deg, #333, #555);
         }
         .site-card h3 {
             margin: 10px;
+            font-size: 16px;
+            color: #ff6b35;
+        }
+        .site-card p {
+            font-size: 12px;
+            margin: 5px 10px;
+            color: #ccc;
+            line-height: 1.4;
         }
         .site-card a {
             display: block;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
+            padding: 12px;
+            background-color: #ff6b35;
+            color: #000;
             text-decoration: none;
-            border-radius: 0 0 8px 8px;
+            font-weight: bold;
+            border-radius: 0 0 10px 10px;
+        }
+        .site-card a:hover {
+            background-color: #e55a2b;
         }
         .site-player {
             display: none;
@@ -61,100 +94,281 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 80%;
-            max-width: 900px;
-            background: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            width: 90%;
+            max-width: 1000px;
+            height: 90%;
+            background: #000;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
             z-index: 1000;
+            border-radius: 10px;
+            overflow: hidden;
         }
         .site-player iframe {
             width: 100%;
-            height: 500px;
+            height: calc(100% - 50px);
+            border: none;
         }
         .close-btn {
             position: absolute;
             top: 10px;
-            right: 10px;
+            right: 15px;
+            font-size: 30px;
+            color: #fff;
+            background: rgba(0,0,0,0.7);
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 50%;
             cursor: pointer;
-            font-size: 20px;
+            z-index: 1001;
+            text-align: center;
         }
         .overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
             z-index: 999;
         }
     </style>
 </head>
-
 <body>
     <header>
-        <h1>Website Viewer</h1>
+        <h1>YesMoviesHub - Recent Movies</h1>
     </header>
-    
+   
     <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search...">
+        <input type="text" id="searchInput" placeholder="Search recent movies...">
     </div>
-    
+   
     <div class="site-grid" id="siteGrid">
-
-        <!-- EXAMPLE WEBSITE ITEMS (you can modify these) -->
-
+        <!-- Recent Movies from YesMoviesHub -->
         <div class="site-card">
-            <img src="https://via.placeholder.com/200x300?text=Google" alt="Google">
-            <h3>Google</h3>
-            <a href="#" data-link="https://www.google.com">Open Website</a>
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Frankenstein+(2025)" alt="Frankenstein">
+            <h3>Frankenstein (2025)</h3>
+            <p>Dr. Victor Frankenstein brings a creature to life in a monstrous experiment that leads to the undoing of both creator and creation.</p>
+            <a href="#" data-link="https://yesmovieshub.online/frankenstein-2/">Watch Now</a>
         </div>
-
         <div class="site-card">
-            <img src="https://via.placeholder.com/200x300?text=Wikipedia" alt="Wikipedia">
-            <h3>Wikipedia</h3>
-            <a href="#" data-link="https://www.wikipedia.org">Open Website</a>
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=The+Elixir+(2025)" alt="The Elixir">
+            <h3>The Elixir (2025)</h3>
+            <p>A dysfunctional family in the herbal medicine business creates a potion that triggers a zombie outbreak.</p>
+            <a href="#" data-link="https://yesmovieshub.online/the-elixir/">Watch Now</a>
         </div>
-
         <div class="site-card">
-            <img src="https://via.placeholder.com/200x300?text=Bing" alt="Bing">
-            <h3>Bing</h3>
-            <a href="#" data-link="https://www.bing.com">Open Website</a>
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Regretting+You+(2025)" alt="Regretting You">
+            <h3>Regretting You (2025)</h3>
+            <p>Morgan Grant and daughter Clara confront family secrets after a devastating accident and betrayal.</p>
+            <a href="#" data-link="https://yesmovieshub.online/regretting-you/">Watch Now</a>
         </div>
-
         <div class="site-card">
-            <img src="https://via.placeholder.com/200x300?text=Your+Website" alt="Custom">
-            <h3>My Custom Site</h3>
-            <a href="#" data-link="">Open Website</a>
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=A+House+of+Dynamite+(2025)" alt="A House of Dynamite">
+            <h3>A House of Dynamite (2025)</h3>
+            <p>A race begins to identify who launched a missile at the US and how to respond.</p>
+            <a href="#" data-link="https://yesmovieshub.online/a-house-of-dynamite/">Watch Now</a>
         </div>
- <div class="site-card">
-            <img src="https://via.placeholder.com/200x300?text=Google" alt="Google">
-            <h3>Google</h3>
-            <a href="#" data-link="https://www.google.com">Open Website</a>
-        </div>
-
         <div class="site-card">
-            <img src="https://via.placeholder.com/200x300?text=Wikipedia" alt="Wikipedia">
-            <h3>Wikipedia</h3>
-            <a href="#" data-link="https://www.wikipedia.org">Open Website</a>
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=The+Woman+in+Cabin+10+(2025)" alt="The Woman in Cabin 10">
+            <h3>The Woman in Cabin 10 (2025)</h3>
+            <p>A journalist witnesses a murder on a luxury yacht, but no one believes her.</p>
+            <a href="#" data-link="https://yesmovieshub.online/the-woman-in-cabin-10/">Watch Now</a>
         </div>
-
         <div class="site-card">
-            <img src="https://via.placeholder.com/200x300?text=Bing" alt="Bing">
-            <h3>Bing</h3>
-            <a href="#" data-link="https://www.bing.com">Open Website</a>
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Springsteen:+Deliver+Me+from+Nowhere+(2025)" alt="Springsteen: Deliver Me from Nowhere">
+            <h3>Springsteen: Deliver Me from Nowhere (2025)</h3>
+            <p>Bruce Springsteen struggles with success and past ghosts on the cusp of superstardom.</p>
+            <a href="#" data-link="https://yesmovieshub.online/springsteen-deliver-me-from-nowhere/">Watch Now</a>
         </div>
-
         <div class="site-card">
-            <img src="https://via.placeholder.com/200x300?text=Your+Website" alt="Custom">
-            <h3>interstellar</h3>
-            <a href="#" data-link="https://yesmovieshub.online/interstellar/">Open Website</a>
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Steve+(2025)" alt="Steve">
+            <h3>Steve (2025)</h3>
+            <p>A head teacher at a reform school faces personal pressures while keeping students in line.</p>
+            <a href="#" data-link="https://yesmovieshub.online/steve/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=The+Wrong+Paris+(2025)" alt="The Wrong Paris">
+            <h3>The Wrong Paris (2025)</h3>
+            <p>Dawn ends up in Paris, Texas, on a dating show and sparks fly with a cowboy.</p>
+            <a href="#" data-link="https://yesmovieshub.online/the-wrong-paris/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Black+Phone+2+(2025)" alt="Black Phone 2">
+            <h3>Black Phone 2 (2025)</h3>
+            <p>Finney Blake struggles post-captivity as his sister receives calls from the black phone.</p>
+            <a href="#" data-link="https://yesmovieshub.online/black-phone-2/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=One+Battle+After+Another+(2025)" alt="One Battle After Another">
+            <h3>One Battle After Another (2025)</h3>
+            <p>Ex-revolutionaries reunite to rescue a member's daughter from their evil nemesis.</p>
+            <a href="#" data-link="https://yesmovieshub.online/one-battle-after-another/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Downton+Abbey:+The+Grand+Finale+(2025)" alt="Downton Abbey: The Grand Finale">
+            <h3>Downton Abbey: The Grand Finale (2025)</h3>
+            <p>The Crawley family grapples with scandal and financial strife threatening their legacy.</p>
+            <a href="#" data-link="https://yesmovieshub.online/downton-abbey-the-grand-finale/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=The+Long+Walk+(2025)" alt="The Long Walk">
+            <h3>The Long Walk (2025)</h3>
+            <p>Fifty teens compete in a deadly annual walk, following rules that test survival.</p>
+            <a href="#" data-link="https://yesmovieshub.online/the-long-walk/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Highest+2+Lowest+(2025)" alt="Highest 2 Lowest">
+            <h3>Highest 2 Lowest (2025)</h3>
+            <p>A music mogul faces a ransom plot and a life-or-death moral dilemma.</p>
+            <a href="#" data-link="https://yesmovieshub.online/highest-2-lowest/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Honey+Don%E2%80%99t!+(2025)" alt="Honey Don’t!">
+            <h3>Honey Don’t! (2025)</h3>
+            <p>A private investigator uncovers strange deaths linked to a mysterious church.</p>
+            <a href="#" data-link="https://yesmovieshub.online/honey-dont/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Saiyaara+(2025)" alt="Saiyaara">
+            <h3>Saiyaara (2025)</h3>
+            <p>Two artistic souls bond through music, challenged by age and circumstances.</p>
+            <a href="#" data-link="https://yesmovieshub.online/saiyaara/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=The+Naked+Gun+(2025)" alt="The Naked Gun">
+            <h3>The Naked Gun (2025)</h3>
+            <p>Lt. Frank Drebin Jr. leads Police Squad to save the world with his unique skills.</p>
+            <a href="#" data-link="https://yesmovieshub.online/the-naked-gun/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Nobody+2+(2025)" alt="Nobody 2">
+            <h3>Nobody 2 (2025)</h3>
+            <p>Ex-assassin Hutch Mansell is pulled back into violence on a family vacation.</p>
+            <a href="#" data-link="https://yesmovieshub.online/nobody-2/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=The+Conjuring:+Last+Rites+(2025)" alt="The Conjuring: Last Rites">
+            <h3>The Conjuring: Last Rites (2025)</h3>
+            <p>Ed and Lorraine Warren confront mysterious entities in their final terrifying case.</p>
+            <a href="#" data-link="https://yesmovieshub.online/the-conjuring-last-rites/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=The+Thursday+Murder+Club+(2025)" alt="The Thursday Murder Club">
+            <h3>The Thursday Murder Club (2025)</h3>
+            <p>Senior sleuths solve a real-life murder mystery in this comic crime caper.</p>
+            <a href="#" data-link="https://yesmovieshub.online/the-thursday-murder-club/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=F1+(2025)" alt="F1">
+            <h3>F1 (2025)</h3>
+            <p>Racing legend Sonny Hayes mentors a young driver for one last shot at glory.</p>
+            <a href="#" data-link="https://yesmovieshub.online/f1/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Superman+(2025)" alt="Superman">
+            <h3>Superman (2025)</h3>
+            <p>Clark Kent reconciles his Kryptonian heritage with his human life in Metropolis.</p>
+            <a href="#" data-link="https://yesmovieshub.online/superman/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Demon+Slayer:+Kimetsu+no+Yaiba+Infinity+Castle+(2025)" alt="Demon Slayer: Kimetsu no Yaiba Infinity Castle">
+            <h3>Demon Slayer: Kimetsu no Yaiba Infinity Castle (2025)</h3>
+            <p>Tanjiro and the Hashira battle Upper Rank demons in the Infinity Castle.</p>
+            <a href="#" data-link="https://yesmovieshub.online/demon-slayer-kimetsu-no-yaiba-infinity-castle/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=KPop+Demon+Hunters+(2025)" alt="KPop Demon Hunters">
+            <h3>KPop Demon Hunters (2025)</h3>
+            <p>K-pop stars use secret powers to protect fans from supernatural threats.</p>
+            <a href="#" data-link="https://yesmovieshub.online/kpop-demon-hunters/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Three+Wisest+Men+(2025)" alt="Three Wisest Men">
+            <h3>Three Wisest Men (2025)</h3>
+            <p>Three brothers face life changes as their mom plans to sell the family home.</p>
+            <a href="#" data-link="https://yesmovieshub.online/three-wisest-men/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Snow+Falling+on+Pumpkins+(2025)" alt="Snow Falling on Pumpkins">
+            <h3>Snow Falling on Pumpkins (2025)</h3>
+            <p>A man with early-onset Alzheimer's finds healing through Cherokee wisdom.</p>
+            <a href="#" data-link="https://yesmovieshub.online/snow-falling-on-pumpkins/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=K-Ramp+(2025)" alt="K-Ramp">
+            <h3>K-Ramp (2025)</h3>
+            <p>A spoiled rich kid falls for a girl with a secret at university in Kerala.</p>
+            <a href="#" data-link="https://yesmovieshub.online/k-ramp/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=JUJUTSU+KAISEN:+Execution+-Shibuya+Incident+x+The+Culling+Game+Begins-+(2025)" alt="JUJUTSU KAISEN: Execution -Shibuya Incident x The Culling Game Begins-">
+            <h3>JUJUTSU KAISEN: Execution -Shibuya Incident x The Culling Game Begins- (2025)</h3>
+            <p>A veil traps civilians in Shibuya as Satoru Gojo confronts chaos.</p>
+            <a href="#" data-link="https://yesmovieshub.online/jujutsu-kaisen-execution-shibuya-incident-x-the-culling-game-begins/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Every+Time+You+Lose+Your+Mind:+A+Film+About+Failure+(2025)" alt="Every Time You Lose Your Mind: A Film About Failure">
+            <h3>Every Time You Lose Your Mind: A Film About Failure (2025)</h3>
+            <p>The rise and fall of '90s band Failure, derailed by addiction.</p>
+            <a href="#" data-link="https://yesmovieshub.online/every-time-you-lose-your-mind-a-film-about-failure/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Christmas+in+the+Ballroom+(2025)" alt="Christmas in the Ballroom">
+            <h3>Christmas in the Ballroom (2025)</h3>
+            <p>A dancer escapes viral drama to a cozy ballroom studio for healing.</p>
+            <a href="#" data-link="https://yesmovieshub.online/christmas-in-the-ballroom/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=The+Lost+Tiger+(2025)" alt="The Lost Tiger">
+            <h3>The Lost Tiger (2025)</h3>
+            <p>Adopted Teo follows visions to a faraway land in search of his origins.</p>
+            <a href="#" data-link="https://yesmovieshub.online/the-lost-tiger/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Minding+Your+Business+(2025)" alt="Minding Your Business">
+            <h3>Minding Your Business (2025)</h3>
+            <p>Rachel strikes a deal with a rival family, threatening their bitter feud.</p>
+            <a href="#" data-link="https://yesmovieshub.online/minding-your-business/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Dog+Fugitive+(2025)" alt="Dog Fugitive">
+            <h3>Dog Fugitive (2025)</h3>
+            <p>Dog psychiatrist Dr. Fluffy flees when her patient is accused of murder.</p>
+            <a href="#" data-link="https://yesmovieshub.online/dog-fugitive/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Bel%C3%A9n+(2025)" alt="Belén">
+            <h3>Belén (2025)</h3>
+            <p>A lawyer risks all to defend a young woman accused of infanticide.</p>
+            <a href="#" data-link="https://yesmovieshub.online/belen/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Escobank+(2025)" alt="Escobank">
+            <h3>Escobank (2025)</h3>
+            <p>Misfits hunt Pablo Escobar's buried cash in Colombia's jungles.</p>
+            <a href="#" data-link="https://yesmovieshub.online/escobank/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Cryptid:+Goatman+(2025)" alt="Cryptid: Goatman">
+            <h3>Cryptid: Goatman (2025)</h3>
+            <p>Experts discuss sightings of the legendary Goatman across the US.</p>
+            <a href="#" data-link="https://yesmovieshub.online/cryptid-goatman/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=SKIT+(2025)" alt="SKIT">
+            <h3>SKIT (2025)</h3>
+            <p>Three college students aim to make a viral YouTube video in 2007.</p>
+            <a href="#" data-link="https://yesmovieshub.online/skit/">Watch Now</a>
+        </div>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300/333333/ffffff?text=Nouvelle+Vague+(2025)" alt="Nouvelle Vague">
+            <h3>Nouvelle Vague (2025)</h3>
+            <p>Young Jean-Luc Godard funds a low-budget film to critique cinema.</p>
+            <a href="#" data-link="https://yesmovieshub.online/nouvelle-vague/">Watch Now</a>
         </div>
     </div>
 
     <div class="overlay" id="overlay"></div>
-
     <div class="site-player" id="player">
         <span class="close-btn" id="closeBtn">&times;</span>
         <iframe id="siteFrame" src="" frameborder="0"></iframe>
@@ -168,18 +382,17 @@
     const siteFrame = document.getElementById('siteFrame');
     const closeBtn = document.getElementById('closeBtn');
 
-    // Search filter
+    // Search functionality
     searchInput.addEventListener('input', () => {
         const query = searchInput.value.toLowerCase();
         const cards = siteGrid.querySelectorAll('.site-card');
-
         cards.forEach(card => {
             const title = card.querySelector('h3').textContent.toLowerCase();
             card.style.display = title.includes(query) ? 'block' : 'none';
         });
     });
 
-    // Open website inside popup
+    // Open movie page in popup iframe
     siteGrid.addEventListener('click', (e) => {
         if (e.target.tagName === 'A') {
             e.preventDefault();
@@ -196,11 +409,8 @@
         player.style.display = 'none';
         siteFrame.src = '';
     }
-
     closeBtn.addEventListener('click', closePlayer);
     overlay.addEventListener('click', closePlayer);
 </script>
-
 </body>
 </html>
-

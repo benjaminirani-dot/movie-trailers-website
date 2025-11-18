@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Movie Streaming Site</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .search-bar {
+            margin: 20px auto;
+            width: 50%;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .movie-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .movie-card img {
+            width: 100%;
+            height: auto;
+        }
+        .movie-card h3 {
+            margin: 10px;
+        }
+        .movie-card a {
+            display: block;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 0 0 8px 8px;
+        }
+        .movie-player {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+        .movie-player iframe {
+            width: 100%;
+            height: 400px;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Free Movie Streaming</h1>
+    </header>
+    
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search for movies...">
+    </div>
+    
+    <div class="movie-grid" id="movieGrid">
+
+        <!-- Interstellar -->
+        <div class="movie-card">
+            <img src="https://via.placeholder.com/200x300?text=Interstellar" alt="Interstellar">
+            <h3>Interstellar Trailer</h3>
+            <a href="#" data-embed="https://www.youtube.com/embed/nyc6RJEEe0U">Watch Now</a>
+        </div>
+
+        <!-- Mandalorian -->
+        <div class="movie-card">
+            <img src="https://via.placeholder.com/200x300?text=Mandalorian" alt="Mandalorian">
+            <h3>Mandalorian Trailer</h3>
+            <a href="#" data-embed="https://www.youtube.com/embed/_pa1KLXuW0Y">Watch Now</a>
+        </div>
+
+        <!-- Oppenheimer -->
+        <div class="movie-card">
+            <img src="https://via.placeholder.com/200x300?text=Oppenheimer" alt="Oppenheimer">
+            <h3>Oppenheimer Trailer</h3>
+            <a href="#" data-embed="https://www.youtube.com/embed/LX3XCkHX3hA">Watch Now</a>
+        </div>
+
+        <!-- Movie Title 1 -->
+        <div class="movie-card">
+            <img src="https://via.placeholder.com/200x300?text=Movie+1" alt="Movie 1">
+            <h3>Movie Title 1</h3>
+            <a href="#" data-embed="https://www.youtube.com/embed/dQw4w9WgXcQ">Watch Now</a>
+        </div>
+
+        <!-- Movie Title 2 -->
+        <div class="movie-card">
+            <img src="https://via.placeholder.com/200x300?text=Movie+2" alt="Movie 2">
+            <h3>Movie Title 2</h3>
+            <a href="#" data-embed="https://www.youtube.com/embed/3JZ_D3ELwOQ">Watch Now</a>
+        </div>
+
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="movie-player" id="player">
+        <span class="close-btn" id="closeBtn">&times;</span>
+        <iframe id="videoFrame" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const movieGrid = document.getElementById('movieGrid');
+    const overlay = document.getElementById('overlay');
+    const player = document.getElementById('player');
+    const videoFrame = document.getElementById('videoFrame');
+    const closeBtn = document.getElementById('closeBtn');
+
+    // Movie search
+    searchInput.addEventListener('input', () => {
+        const query = searchInput.value.toLowerCase();
+        const cards = movieGrid.querySelectorAll('.movie-card');
+
+        cards.forEach(card => {
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            card.style.display = title.includes(query) ? 'block' : 'none';
+        });
+    });
+
+    // Open video
+    movieGrid.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+            e.preventDefault();
+            const embedUrl = e.target.getAttribute('data-embed');
+            videoFrame.src = embedUrl;
+            overlay.style.display = 'block';
+            player.style.display = 'block';
+        }
+    });
+
+    // Close video
+    function closePlayer() {
+        overlay.style.display = 'none';
+        player.style.display = 'none';
+        videoFrame.src = '';
+    }
+
+    closeBtn.addEventListener('click', closePlayer);
+    overlay.addEventListener('click', closePlayer);
+</script>
+
+</body>
+</html>

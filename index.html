@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Movie Streaming Site</title>
+    <title>Website Viewer</title>
 
     <style>
         body {
@@ -27,27 +27,27 @@
             padding: 10px;
             font-size: 16px;
         }
-        .movie-grid {
+        .site-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 20px;
             padding: 20px;
         }
-        .movie-card {
+        .site-card {
             background-color: white;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             text-align: center;
         }
-        .movie-card img {
+        .site-card img {
             width: 100%;
             height: auto;
         }
-        .movie-card h3 {
+        .site-card h3 {
             margin: 10px;
         }
-        .movie-card a {
+        .site-card a {
             display: block;
             padding: 10px;
             background-color: #007bff;
@@ -55,22 +55,22 @@
             text-decoration: none;
             border-radius: 0 0 8px 8px;
         }
-        .movie-player {
+        .site-player {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 80%;
-            max-width: 800px;
+            max-width: 900px;
             background: white;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
             z-index: 1000;
         }
-        .movie-player iframe {
+        .site-player iframe {
             width: 100%;
-            height: 400px;
+            height: 500px;
         }
         .close-btn {
             position: absolute;
@@ -94,211 +94,84 @@
 
 <body>
     <header>
-        <h1>Free Movie Streaming</h1>
+        <h1>Website Viewer</h1>
     </header>
     
     <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search for movies...">
+        <input type="text" id="searchInput" placeholder="Search...">
     </div>
     
-    <div class="movie-grid" id="movieGrid">
+    <div class="site-grid" id="siteGrid">
 
-        <!-- Interstellar -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Interstellar" alt="Interstellar">
-            <h3>Interstellar Trailer</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/nyc6RJEEe0U">Watch Now</a>
+        <!-- EXAMPLE WEBSITE ITEMS (you can modify these) -->
+
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300?text=Google" alt="Google">
+            <h3>Google</h3>
+            <a href="#" data-link="https://www.google.com">Open Website</a>
         </div>
 
-        <!-- Mandalorian -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Mandalorian" alt="Mandalorian">
-            <h3>Mandalorian Trailer</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/_pa1KLXuW0Y">Watch Now</a>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300?text=Wikipedia" alt="Wikipedia">
+            <h3>Wikipedia</h3>
+            <a href="#" data-link="https://www.wikipedia.org">Open Website</a>
         </div>
 
-        <!-- Oppenheimer -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Oppenheimer" alt="Oppenheimer">
-            <h3>Oppenheimer Trailer</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/LX3XCkHX3hA">Watch Now</a>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300?text=Bing" alt="Bing">
+            <h3>Bing</h3>
+            <a href="#" data-link="https://www.bing.com">Open Website</a>
         </div>
 
-        <!-- Movie Title 1 -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Movie+1" alt="Movie 1">
-            <h3>Movie Title 1</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/dQw4w9WgXcQ">Watch Now</a>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300?text=Your+Website" alt="Custom">
+            <h3>My Custom Site</h3>
+            <a href="#" data-link="">Open Website</a>
+        </div>
+ <div class="site-card">
+            <img src="https://via.placeholder.com/200x300?text=Google" alt="Google">
+            <h3>Google</h3>
+            <a href="#" data-link="https://www.google.com">Open Website</a>
         </div>
 
-        <!-- Movie Title 2 -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Movie+2" alt="Movie 2">
-            <h3>Movie Title 2</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/3JZ_D3ELwOQ">Watch Now</a>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300?text=Wikipedia" alt="Wikipedia">
+            <h3>Wikipedia</h3>
+            <a href="#" data-link="https://www.wikipedia.org">Open Website</a>
         </div>
 
-        <!-- 1. Avatar: The Way of Water -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Avatar+2" alt="Avatar: The Way of Water">
-            <h3>Avatar: The Way of Water</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/d9MyW72ELq0">Watch Now</a>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300?text=Bing" alt="Bing">
+            <h3>Bing</h3>
+            <a href="#" data-link="https://www.bing.com">Open Website</a>
         </div>
 
-        <!-- 2. Dune: Part Two -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Dune+2" alt="Dune: Part Two">
-            <h3>Dune: Part Two</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/0tcFpIrBTuk">Watch Now</a>
+        <div class="site-card">
+            <img src="https://via.placeholder.com/200x300?text=Your+Website" alt="Custom">
+            <h3>interstellar</h3>
+            <a href="#" data-link="https://yesmovieshub.online/interstellar/">Open Website</a>
         </div>
-
-        <!-- 3. The Batman -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=The+Batman" alt="The Batman">
-            <h3>The Batman</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/6Vc0xXO_Sbs">Watch Now</a>
-        </div>
-
-        <!-- 4. Spider-Man: No Way Home -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Spider-Man+NWH" alt="Spider-Man: No Way Home">
-            <h3>Spider-Man: No Way Home</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/rt-2cxAiPJk">Watch Now</a>
-        </div>
-
-        <!-- 5. Avengers: Endgame -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Endgame" alt="Avengers: Endgame">
-            <h3>Avengers: Endgame</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/ZeQ9Chg9_Fk">Watch Now</a>
-        </div>
-
-        <!-- 6. Deadpool & Wolverine -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Deadpool+Wolverine" alt="Deadpool & Wolverine">
-            <h3>Deadpool & Wolverine</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/PCf03KXyzIg">Watch Now</a>
-        </div>
-
-        <!-- 7. Godzilla vs. Kong -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Godzilla+vs+Kong" alt="Godzilla vs. Kong">
-            <h3>Godzilla x Kong : The New Empire</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/lV1OOlGwExM">Watch Now</a>
-        </div>
-
-        <!-- 8. Jurassic World Dominion -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Jurassic+World" alt="Jurassic World Dominion">
-            <h3>Jurassic World Dominion</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/JpNAsXsMUes">Watch Now</a>
-        </div>
-
-        <!-- 9. The Lion King (2019) -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Lion+King" alt="The Lion King">
-            <h3>The Lion King (2019)</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/7TavVZMewpY">Watch Now</a>
-        </div>
-
-        <!-- 10. Black Panther: Wakanda Forever -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Wakanda+Forever" alt="Wakanda Forever">
-            <h3>Black Panther: Wakanda Forever</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/RlOB3UALvrQ">Watch Now</a>
-        </div>
-
-        <!-- 11. Star Wars: The Rise of Skywalker -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Star+Wars+9" alt="Star Wars: The Rise of Skywalker">
-            <h3>Star Wars: The Rise of Skywalker</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/nlnrOr2STaE">Watch Now</a>
-        </div>
-
-        <!-- 12. Mission Impossible: Dead Reckoning -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=MI+DR" alt="Mission Impossible Dead Reckoning">
-            <h3>Mission Impossible: Dead Reckoning</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/EfwbKqoIU1o">Watch Now</a>
-        </div>
-
-        <!-- 13. John Wick: Chapter 4 -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=John+Wick+4" alt="John Wick 4">
-            <h3>John Wick: Chapter 4</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/l7MUCG7jQXM">Watch Now</a>
-        </div>
-
-        <!-- 14. Fast X -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Fast+X" alt="Fast X">
-            <h3>Fast X</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/tcwEGXLR_XM">Watch Now</a>
-        </div>
-
-        <!-- 15. The Matrix Resurrections -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Matrix+4" alt="The Matrix Resurrections">
-            <h3>The Matrix Resurrections</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/HfiS-JOzRhw">Watch Now</a>
-        </div>
-
-        <!-- 16. Harry Potter and the Deathly Hallows Part 2 -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Harry+Potter+DH2" alt="Harry Potter and the Deathly Hallows Part 2">
-            <h3>Harry Potter and the Deathly Hallows Part 2</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/mObK5XD8udk">Watch Now</a>
-        </div>
-
-        <!-- 17. Hunger Games: Ballad of Songbirds & Snakes -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Hunger+Games" alt="The Ballad of Songbirds and Snakes">
-            <h3>The Ballad of Songbirds & Snakes</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/yrG_bs7DX9U">Watch Now</a>
-        </div>
-
-        <!-- 18. Doctor Strange in the Multiverse of Madness -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Doctor+Strange+2" alt="Doctor Strange 2">
-            <h3>Doctor Strange in the Multiverse of Madness</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/Rf8LAYJSOL8">Watch Now</a>
-        </div>
-
-        <!-- 19. Frozen 2 -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Frozen+2" alt="Frozen 2">
-            <h3>Frozen 2</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/Zi4LMpSDccc">Watch Now</a>
-        </div>
-
-        <!-- 20. Wonka -->
-        <div class="movie-card">
-            <img src="https://via.placeholder.com/200x300?text=Wonka" alt="Wonka">
-            <h3>Wonka</h3>
-            <a href="#" data-embed="https://www.youtube.com/embed/otNh9bTjXWg">Watch Now</a>
-        </div>
-
     </div>
 
     <div class="overlay" id="overlay"></div>
 
-    <div class="movie-player" id="player">
+    <div class="site-player" id="player">
         <span class="close-btn" id="closeBtn">&times;</span>
-        <iframe id="videoFrame" src="" frameborder="0" allowfullscreen></iframe>
+        <iframe id="siteFrame" src="" frameborder="0"></iframe>
     </div>
 
 <script>
     const searchInput = document.getElementById('searchInput');
-    const movieGrid = document.getElementById('movieGrid');
+    const siteGrid = document.getElementById('siteGrid');
     const overlay = document.getElementById('overlay');
     const player = document.getElementById('player');
-    const videoFrame = document.getElementById('videoFrame');
+    const siteFrame = document.getElementById('siteFrame');
     const closeBtn = document.getElementById('closeBtn');
 
-    // Movie search
+    // Search filter
     searchInput.addEventListener('input', () => {
         const query = searchInput.value.toLowerCase();
-        const cards = movieGrid.querySelectorAll('.movie-card');
+        const cards = siteGrid.querySelectorAll('.site-card');
 
         cards.forEach(card => {
             const title = card.querySelector('h3').textContent.toLowerCase();
@@ -306,22 +179,22 @@
         });
     });
 
-    // Open video
-    movieGrid.addEventListener('click', (e) => {
+    // Open website inside popup
+    siteGrid.addEventListener('click', (e) => {
         if (e.target.tagName === 'A') {
             e.preventDefault();
-            const embedUrl = e.target.getAttribute('data-embed');
-            videoFrame.src = embedUrl;
+            const url = e.target.getAttribute('data-link');
+            siteFrame.src = url;
             overlay.style.display = 'block';
             player.style.display = 'block';
         }
     });
 
-    // Close video
+    // Close popup
     function closePlayer() {
         overlay.style.display = 'none';
         player.style.display = 'none';
-        videoFrame.src = '';
+        siteFrame.src = '';
     }
 
     closeBtn.addEventListener('click', closePlayer);
